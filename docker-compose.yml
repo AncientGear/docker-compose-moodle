@@ -1,5 +1,13 @@
 version: '2'
 services:
+  mariadb:
+    image: mariadb
+    volumes:
+      - ./database:/var/lib/mysql
+    environment:
+      - MYSQL_ROOT_PASSWORD=moodle
+      - MYSQL_ROOT_USER=root
+      - MYSQL_DATABASE=moodle
   moodle:
     image: bitnami/moodle:latest
     ports:
@@ -19,12 +27,4 @@ services:
       - mariadb
     links:
       - mariadb:mariadb
-  mariadb:
-    image: mariadb
-    volumes:
-      - ./database:/var/lib/mysql
-    environment:
-      - MYSQL_ROOT_PASSWORD=moodle
-      - MYSQL_ROOT_USER=root
-      - MYSQL_DATABASE=moodle
       
